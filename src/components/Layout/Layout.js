@@ -5,12 +5,20 @@ import classes from './Layout.css';
 
 class Layout extends Component {
   state = {
-    showSideDrawer: true
+    showSideDrawer: false
   }
   
   sideDrawerCloseHandler = () => {
     this.setState({
       showSideDrawer: false
+    });
+  }
+
+  sideDrawerToggleHandler = () => {
+    this.setState(({ showSideDrawer }) => {
+      return {
+        showSideDrawer: !showSideDrawer
+      }
     });
   }
 
@@ -21,7 +29,7 @@ class Layout extends Component {
           closed={this.sideDrawerCloseHandler} 
           open={this.state.showSideDrawer}
         />
-        <Toolbar />
+        <Toolbar drawToggleClicked={this.sideDrawerToggleHandler} />
         <main className={classes.Content}>
           {this.props.children}
         </main>
