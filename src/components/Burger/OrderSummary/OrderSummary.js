@@ -7,7 +7,7 @@ const orderSummary = (props) => {
       <li key={igKey}>
         <span style={{ textTransform: 'capitalize' }}>{igKey}: {props.ingredients[igKey]}</span>
       </li>
-    ))
+    ));
 
   return (
     <Fragment>
