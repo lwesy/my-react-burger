@@ -5,7 +5,7 @@ import classes from './BuildControls.css';
 const controls = [
   { label: 'Salad', type: 'salad' },
   { label: 'Bacon', type: 'bacon' },
-  { label: 'Chesse', type: 'cheese' },
+  { label: 'Cheese', type: 'cheese' },
   { label: 'Meat', type: 'meat' }
 ];
 
