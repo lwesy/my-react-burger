@@ -36,7 +36,7 @@ class BurgerBuilder extends Component {
         error: true
       });
     }
-  } 
+  }
 
   updatePurchasableState = (ingredients) => {
     const sum = Object.keys(ingredients)
@@ -56,9 +56,9 @@ class BurgerBuilder extends Component {
     const totalPrice = this.state.totalPrice + INGREDIENT_PRICES[type];
 
     this.setState({
-        ingredients,
-        totalPrice
-      });
+      ingredients,
+      totalPrice
+    });
     
     this.updatePurchasableState(ingredients);
   }
@@ -96,38 +96,40 @@ class BurgerBuilder extends Component {
   }
 
   purchaseContinueHandler = async () => {
-    this.setState({
-      loading: true
-    });
+    // this.setState({
+    //   loading: true
+    // });
 
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'Liam Wohlfart',
-        address: {
-          street: 'Examplestreet 12',
-          zipcode: '21335',
-          country: 'Germany'
-        },
-        email: 'lorem@ipsum.com'
-      },
-      deliveryMethod: 'fastest'
-    };
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: 'Liam Wohlfart',
+    //     address: {
+    //       street: 'Examplestreet 12',
+    //       zipcode: '21335',
+    //       country: 'Germany'
+    //     },
+    //     email: 'lorem@ipsum.com'
+    //   },
+    //   deliveryMethod: 'fastest'
+    // };
 
-    try {
-      await axios.post('/orders.json', order);
+    // try {
+    //   await axios.post('/orders.json', order);
 
-      this.setState({
-        loading: false,
-        purchasing: false
-      });
-    } catch (error) {
-      this.setState({
-        loading: false,
-        purchasing: false
-      });
-    }
+    //   this.setState({
+    //     loading: false,
+    //     purchasing: false
+    //   });
+    // } catch (error) {
+    //   this.setState({
+    //     loading: false,
+    //     purchasing: false
+    //   });
+    // }
+
+    this.props.history.push('/checkout');
   }
 
   render() {
