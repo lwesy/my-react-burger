@@ -19,11 +19,11 @@ class ContactData extends Component {
   orderHandler = async (event) => {
     event.preventDefault();
 
-    this.setState({ loading: true });
+    this.setState({loading: true});
 
     const order = {
       ingredients: this.props.ingredients,
-      price: this.state.totalPrice,
+      price: this.props.price,
       customer: {
         name: 'Liam Wohlfart',
         address: {
@@ -38,10 +38,10 @@ class ContactData extends Component {
 
     try {
       await axios.post('/orders.json', order);
-      this.setState({ loading: false });
+      this.setState({loading: false});
       this.props.history.push('/');
     } catch (error) {
-      this.setState({ loading: false });
+      this.setState({loading: false});
     }
   }
 
