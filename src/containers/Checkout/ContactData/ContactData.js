@@ -84,10 +84,12 @@ class ContactData extends Component {
             {value: 'cheapest', displayValue: 'Cheapest'}
           ]
         },
-        value: ''
+        value: '',
+        valid: true
       }
     },
-    loading: false
+    loading: false,
+    formIsValid: false
   }
 
   orderHandler = async (event) => {
@@ -135,20 +137,25 @@ class ContactData extends Component {
   }
 
   inputChangedHandler = (event, id) => {
-    const {value} = event.target;
-
-    this.setState(prevState => {
-      return {
-        orderForm: {
-          ...prevState.orderForm,
-          [id]: {
-            ...prevState.orderForm[id],
-            value,
-            valid: this.checkValidity(value, prevState.orderForm[id].validation),
-            touched: true
-          }
-        }
+    const updatedForm = {
+      ...this.state.orderForm,
+      [id]: {
+        ...this.state.orderForm[id],
+        value: event.target.value,
+        valid: this.checkValidity(event.target.value, this.state.orderForm[id].validation),
+        touched: true,
       }
+    }
+
+    let formIsValid = true;
+
+    for (let key in updatedForm) {
+      formIsValid = updatedForm[key].valid && formIsValid;
+    }
+
+    this.setState({
+        orderForm: updatedForm,
+        formIsValid
     });
   }
 
@@ -176,7 +183,7 @@ class ContactData extends Component {
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
           />
         )}
-        <Button btnType="Success">ORDER</Button>
+        <Button disabled={!this.state.formIsValid} btnType="Success">ORDER</Button>
       </form>
     );
 
