@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
@@ -93,7 +94,7 @@ class ContactData extends Component {
     formIsValid: false
   }
 
-  orderHandler = async (event) => {
+  orderHandler = async event => {
     event.preventDefault();
 
     this.setState({loading: true});
@@ -201,4 +202,11 @@ class ContactData extends Component {
   }
 }
 
-export default withRouter(ContactData);
+const mapStateToProps = state => {
+  return {
+    ingredients: state.ingredients,
+    price: state.totalPrice
+  };
+};
+
+export default connect(mapStateToProps)(ContactData);
