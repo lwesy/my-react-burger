@@ -24,19 +24,19 @@ class BurgerBuilder extends Component {
     error: false
   }
 
-  async componentDidMount() {
-    try {
-      const { data } = await axios.get('https://my-react-burger-bc71f.firebaseio.com/Ingredients.json');
+  // async componentDidMount() {
+  //   try {
+  //     const { data } = await axios.get('https://my-react-burger-bc71f.firebaseio.com/Ingredients.json');
 
-      this.setState({
-        ingredients: data
-      });
-    } catch (error) {
-      this.setState({
-        error: true
-      });
-    }
-  }
+  //     this.setState({
+  //       ingredients: data
+  //     });
+  //   } catch (error) {
+  //     this.setState({
+  //       error: true
+  //     });
+  //   }
+  // }
 
   updatePurchasableState = (ingredients) => {
     const sum = Object.keys(ingredients)
