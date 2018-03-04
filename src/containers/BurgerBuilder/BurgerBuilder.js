@@ -48,7 +48,7 @@ class BurgerBuilder extends Component {
   }
 
   addIngredientHandler = (type) => {
-    const ingredients = { 
+    const ingredients = {
       ...this.state.ingredients,
       [type]: this.state.ingredients[type] + 1
     };
@@ -59,12 +59,12 @@ class BurgerBuilder extends Component {
       ingredients,
       totalPrice
     });
-    
+
     this.updatePurchasableState(ingredients);
   }
 
   removeIngredientHandler = (type) => {
-    const ingredients = { 
+    const ingredients = {
       ...this.state.ingredients,
       [type]: this.state.ingredients[type] - 1
     };
@@ -117,7 +117,7 @@ class BurgerBuilder extends Component {
     let burger = this.state.error ? <p>Ingredients can't load!</p> : <Spinner />;
     let orderSummary = null;
 
-    for (const key in disabled) {  
+    for (const key in disabled) {
       disabled[key] = disabled[key] <= 0;
     }
 
@@ -125,18 +125,18 @@ class BurgerBuilder extends Component {
       burger = (
         <Fragment>
           <Burger ingredients={this.state.ingredients} />
-          <BuildControls 
+          <BuildControls
             ingredientAdded={this.addIngredientHandler}
             ingredientRemoved={this.removeIngredientHandler}
             disabled={disabled}
             price={this.state.totalPrice}
             purchasable={this.state.purchasable}
             ordered={this.purchaseHandler}
-          />     
+          />
         </Fragment>
       );
 
-      orderSummary = <OrderSummary 
+      orderSummary = <OrderSummary
         ingredients={this.state.ingredients}
         purchaseContinued={this.purchaseContinueHandler}
         purchaseCanceled={this.purchaseCancelHandler}
@@ -150,7 +150,7 @@ class BurgerBuilder extends Component {
 
     return (
       <Fragment>
-        <Modal 
+        <Modal
           show={this.state.purchasing}
           closeModal={this.purchaseCancelHandler}
         >
