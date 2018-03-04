@@ -1,5 +1,12 @@
 import  * as actionTypes from './actions';
 
+const INGREDIENT_PRICES = {
+  salad: 0.5,
+  cheese: 0.4,
+  meat: 1.3,
+  bacon: 0.6
+};
+
 export default (state = {
   ingredients: {
     salad: 0,
@@ -9,24 +16,24 @@ export default (state = {
   },
   totalPrice: 4
 }, action) => {
-  const {ingredientName} = action.payload;
-
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:
       return {
         ...state,
         ingredients: {
           ...state.ingredients,
-          [ingredientName]: state.ingredients[ingredientName] + 1
-        }
+          [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] + 1
+        },
+        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName]
       };
     case actionTypes.REMOVE_INGREDIENT:
       return {
         ...state,
         ingredients: {
           ...state.ingredients,
-          [ingredientName]: state.ingredients[ingredientName] - 1
-        }
+          [action.payload.ingredientName]: state.ingredients[action.payload.ingredientName] - 1
+        },
+        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName]
       };
     default:
       return state;
