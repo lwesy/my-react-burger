@@ -15,7 +15,7 @@ class BurgerBuilder extends Component {
     purchasing: false,
     loading: false,
     error: false
-  }
+  };
 
   // async componentDidMount() {
   //   try {
@@ -36,19 +36,19 @@ class BurgerBuilder extends Component {
       .reduce((sum, el) => sum + ingredients[el], 0);
 
     return sum > 0;
-  }
+  };
 
   purchaseHandler = () => {
     this.setState({purchasing: true});
-  }
+  };
 
   purchaseCancelHandler = () => {
     this.setState({purchasing: false});
-  }
+  };
 
   purchaseContinueHandler = () => {
     this.props.history.push('/checkout');
-  }
+  };
 
   render() {
     const disabled = {...this.props.ingredients};

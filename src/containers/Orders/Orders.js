@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios-orders';
 import Order from '../../components/Order/Order';
@@ -7,7 +8,7 @@ class Orders extends Component {
   state = {
     orders: [],
     loading: true
-  }
+  };
 
   async componentDidMount() {
     try {
@@ -33,8 +34,8 @@ class Orders extends Component {
   render() {
     return (
       <div>
-        {this.state.orders.map(order => 
-          <Order 
+        {this.state.orders.map(order =>
+          <Order
             key={order.id}
             ingredients={order.ingredients}
             price={+order.price}

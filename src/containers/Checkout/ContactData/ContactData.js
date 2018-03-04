@@ -92,7 +92,7 @@ class ContactData extends Component {
     },
     loading: false,
     formIsValid: false
-  }
+  };
 
   orderHandler = async event => {
     event.preventDefault();
@@ -118,7 +118,7 @@ class ContactData extends Component {
     } catch (error) {
       this.setState({loading: false});
     }
-  }
+  };
 
   checkValidity(value, rules) {
     let isValid = true;
@@ -159,7 +159,7 @@ class ContactData extends Component {
         orderForm: updatedForm,
         formIsValid
     });
-  }
+  };
 
   render() {
     const formElementsArray = [];
@@ -182,7 +182,7 @@ class ContactData extends Component {
             invalid={!formElement.config.valid}
             shouldValidate={formElement.config.validation}
             touched={formElement.config.touched}
-            changed={(event) => this.inputChangedHandler(event, formElement.id)}
+            changed={event => this.inputChangedHandler(event, formElement.id)}
           />
         )}
         <Button disabled={!this.state.formIsValid} btnType="Success">ORDER</Button>

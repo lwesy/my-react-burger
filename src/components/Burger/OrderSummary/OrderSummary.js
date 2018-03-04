@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
+
 import Button from '../../UI/Button/Button';
 
-const orderSummary = (props) => {
+const orderSummary = props => {
   const ingredientSummary = Object.keys(props.ingredients)
-    .map((igKey) => (
+    .map(igKey => (
       <li key={igKey}>
-        <span style={{ textTransform: 'capitalize' }}>{igKey}: {props.ingredients[igKey]}</span>
+        <span style={{textTransform: 'capitalize'}}>{igKey}: {props.ingredients[igKey]}</span>
       </li>
     ));
 

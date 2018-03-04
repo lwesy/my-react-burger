@@ -1,7 +1,8 @@
 import React from 'react';
+
 import classes from './Input.css';
 
-const input = (props) => {
+const input = props => {
   let inputElement = null;
   const inputClass = [classes.InputElement];
 
@@ -9,7 +10,7 @@ const input = (props) => {
     inputClass.push(classes.Invalid);
   }
 
-  switch(props.elementType) {
+  switch (props.elementType) {
     case 'input':
       inputElement = <input
         className={inputClass.join(' ')}
