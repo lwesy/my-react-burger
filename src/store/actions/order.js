@@ -26,7 +26,7 @@ export const purchaseBurger = orderData => async dispatch => {
 
     console.log(data);
 
-    dispatch(purchaseBurgerSuccess(data, orderData));
+    dispatch(purchaseBurgerSuccess(data.name, orderData));
   } catch (error) {
     dispatch(purchaseBurgerFail(error));
   }
