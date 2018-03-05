@@ -2,10 +2,10 @@ import * as actionTypes from './actionTypes';
 
 import axios from '../../axios-orders';
 
-export const purchaseBurgerSuccess = (orderID, orderData) => ({
+export const purchaseBurgerSuccess = (orderId, orderData) => ({
   type: actionTypes.PURCHASE_BURGER_SUCCESS,
   payload: {
-    orderID,
+    orderId,
     orderData
   }
 });
@@ -17,7 +17,10 @@ export const purchaseBurgerFail = error => ({
   }
 });
 
-export const purchaseBurgerStart = orderData => async dispatch => {
+export const purchaseBurgerStart = () => ({type: actionTypes.PURCHASE_BURGER_START});
+
+export const purchaseBurger = orderData => async dispatch => {
+  dispatch(purchaseBurgerStart());
   try {
     const {data} = await axios.post('/orders.json', orderData);
 
