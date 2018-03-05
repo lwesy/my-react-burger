@@ -8,13 +8,9 @@ const INGREDIENT_PRICES = {
 };
 
 export default (state = {
-  ingredients: {
-    salad: 0,
-    bacon: 0,
-    cheese: 0,
-    meat: 0
-  },
-  totalPrice: 4
+  ingredients: null,
+  totalPrice: 4,
+  error: false
 }, action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT:

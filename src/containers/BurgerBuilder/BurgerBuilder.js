@@ -12,24 +12,12 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 class BurgerBuilder extends Component {
   state = {
-    purchasing: false,
-    loading: false,
-    error: false
+    purchasing: false
   };
 
-  // async componentDidMount() {
-  //   try {
-  //     const { data } = await axios.get('https://my-react-burger-bc71f.firebaseio.com/Ingredients.json');
+  async componentDidMount() {
 
-  //     this.setState({
-  //       ingredients: data
-  //     });
-  //   } catch (error) {
-  //     this.setState({
-  //       error: true
-  //     });
-  //   }
-  // }
+  }
 
   updatePurchasableState = ingredients => {
     const sum = Object.keys(ingredients)
@@ -80,10 +68,6 @@ class BurgerBuilder extends Component {
         purchaseCanceled={this.purchaseCancelHandler}
         price={this.props.price}
       />
-    }
-
-    if (this.state.loading) {
-      orderSummary = <Spinner />
     }
 
     return (
