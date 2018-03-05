@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 
-import * as actionTypes from '../../store/actions';
+import * as actions from '../../store/actions/';
 import axios from '../../axios-orders';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
@@ -109,18 +109,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIngredientAdded: name => dispatch({
-      type: actionTypes.ADD_INGREDIENT,
-      payload: {
-        ingredientName: name
-      }
-    }),
-    onIngredientRemoved: name => dispatch({
-      type: actionTypes.REMOVE_INGREDIENT,
-      payload: {
-        ingredientName: name
-      }
-    })
+    onIngredientAdded: name => dispatch(actions.addIngredient(name)),
+    onIngredientRemoved: name => dispatch(actions.removeIngredient(name))
   };
 };
 
