@@ -18,7 +18,9 @@ export const removeIngredient = ingredientName => ({
 
 export const setIngredients = ingredients => ({
   type: actionTypes.SET_INGREDIENTS,
-  ingredients
+  payload: {
+    ingredients
+  }
 });
 
 export const fetchIngredientsFailed = () => ({
