@@ -34,8 +34,9 @@ export default (state = {
     case actionTypes.SET_INGREDIENTS:
       return {
         ...state,
-        ingredients: action.payload.ingredients
-      }
+        ingredients: action.payload.ingredients,
+        totalPrice: 4
+      };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
       return {
         ...state,
