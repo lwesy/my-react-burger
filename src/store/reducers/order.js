@@ -5,6 +5,11 @@ export default (state = {
   loading: false
 }, action) => {
   switch(action.type) {
+    case actionTypes.PURCHASE_INIT:
+      return {
+        ...state,
+        purchased: false
+      };
     case actionTypes.PURCHASE_BURGER_START:
       return {
         ...state,
@@ -17,7 +22,8 @@ export default (state = {
           ...action.payload.orderData,
           id: action.payload.orderId
         }),
-        loading: false
+        loading: false,
+        purchased: true
       };
     case actionTypes.PURCHASE_BURGER_FAIL:
       return {
