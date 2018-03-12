@@ -1,7 +1,7 @@
 import  * as actionTypes from '../actions/actionTypes';
 
 export default (state = {
-  order: [],
+  orders: [],
   loading: false
 }, action) => {
   switch(action.type) {
@@ -18,7 +18,7 @@ export default (state = {
     case actionTypes.PURCHASE_BURGER_SUCCESS:
       return {
         ...state,
-        order: state.order.concat({
+        orders: state.orders.concat({
           ...action.payload.orderData,
           id: action.payload.orderId
         }),
@@ -26,6 +26,22 @@ export default (state = {
         purchased: true
       };
     case actionTypes.PURCHASE_BURGER_FAIL:
+      return {
+        ...state,
+        loading: false
+      };
+    case actionTypes.FETCH_ORDERS_START:
+      return {
+        ...state,
+        loading: true
+      };
+    case actionTypes.FETCH_ORDERS_SUCCESS:
+      return {
+        ...state,
+        orders: action.payload.orders,
+        loading: false
+      };
+    case actionTypes.FETCH_ORDERS_FAIL:
       return {
         ...state,
         loading: false
