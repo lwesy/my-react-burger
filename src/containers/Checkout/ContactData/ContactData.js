@@ -140,7 +140,7 @@ class ContactData extends Component {
         valid: this.checkValidity(event.target.value, this.state.orderForm[id].validation),
         touched: true,
       }
-    }
+    };
 
     let formIsValid = true;
 
