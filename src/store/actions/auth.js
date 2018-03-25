@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+import {AUTH_KEY} from '../../env';
 import * as actionTypes from './actionTypes';
 
 export const authStart = () => ({
@@ -18,6 +21,20 @@ export const authFail = error => ({
   }
 });
 
-export const auth = (email, password) => dispatch => {
+export const auth = (email, password) => async dispatch => {
   dispatch(authStart());
+  const authData = {
+    email,
+    password,
+    returnSecureToken: true
+  };
+
+  try {
+    const response = await axios.post(`https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${AUTH_KEY}`, authData);
+    console.log(response.data);
+    dispatch(authSuccess(response.data));
+  } catch (err) {
+    console.log(err);
+    dispatch(authFail(err));
+  }
 };
