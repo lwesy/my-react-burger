@@ -1,3 +1,1 @@
-module.exports = {
-  auth: 'AUTH_KEY'
-};
+export const AUTH_KEY = 'AUTH_KEY';
