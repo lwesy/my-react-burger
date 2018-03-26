@@ -3,9 +3,7 @@ import axios from 'axios';
 import {AUTH_KEY} from '../../env';
 import * as actionTypes from './actionTypes';
 
-export const authStart = () => ({
-  type: actionTypes.AUTH_START
-});
+export const authStart = () => ({type: actionTypes.AUTH_START});
 
 export const authSuccess = (token, userId) => ({
   type: actionTypes.AUTH_SUCCESS,
@@ -21,6 +19,14 @@ export const authFail = error => ({
     error
   }
 });
+
+export const authLogout = () => ({type: actionTypes.AUTH_LOGOUT});
+
+export const checkAuthTimer = experationTime => dispatch => {
+  setTimeout(() => {
+    dispatch(authLogout());
+  }, experationTime * 1000);
+};
 
 export const auth = (email, password, isSignup) => async dispatch => {
   dispatch(authStart());
@@ -39,6 +45,7 @@ export const auth = (email, password, isSignup) => async dispatch => {
   try {
     const response = await axios.post(url, authData);
     dispatch(authSuccess(response.data.idToken, response.data.localId));
+    dispatch(checkAuthTimer(response.data.expiresIn));
   } catch (err) {
     dispatch(authFail(err.response.data.error));
   }
