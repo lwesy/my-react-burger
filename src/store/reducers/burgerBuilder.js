@@ -15,7 +15,7 @@ const addIngredient = (state, action) => {
   };
   const totalPrice = state.totalPrice + INGREDIENT_PRICES[action.payload.ingredientName];
 
-  return updateObject(state, {ingredients, totalPrice});
+  return updateObject(state, {ingredients, totalPrice, building: true});
 };
 
 const removeIngredient = (state, action) => {
@@ -25,14 +25,14 @@ const removeIngredient = (state, action) => {
   };
   const totalPrice = state.totalPrice - INGREDIENT_PRICES[action.payload.ingredientName];
 
-  return updateObject(state, {ingredients, totalPrice});
+  return updateObject(state, {ingredients, totalPrice, building: true});
 };
 
 const setIngredients = (state, action) => {
   const ingredients = action.payload.ingredients;
   const totalPrice = 4;
 
-  return updateObject(state, {ingredients, totalPrice});
+  return updateObject(state, {ingredients, totalPrice, building: false});
 };
 
 const fetchIngredientsFailed = (state, action) =>  updateObject(state, {error: true});
@@ -40,7 +40,8 @@ const fetchIngredientsFailed = (state, action) =>  updateObject(state, {error: t
 export default (state = {
   ingredients: null,
   totalPrice: 4,
-  error: false
+  error: false,
+  building: false
 }, action) => {
   switch (action.type) {
     case actionTypes.ADD_INGREDIENT: return addIngredient(state, action);

@@ -43,6 +43,12 @@ class Auth extends Component {
     isSignup: true
   };
 
+  componentDidMount() {
+    if (!this.props.building && this.props.authRedirectPath !== '/') {
+      this.props.onSetAuthRedirectPath('/');
+    }
+  }
+
   submitHandler = event => {
     event.preventDefault();
     this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
@@ -127,7 +133,7 @@ class Auth extends Component {
     let authRedirect = null;
 
     if (this.props.isAuth) {
-      authRedirect = <Redirect to="/" />;
+      authRedirect = <Redirect to={this.props.authRedirectPath} />;
     }
 
     return (
@@ -150,11 +156,14 @@ class Auth extends Component {
 const mapStateToProps = state => ({
   loading: state.auth.loading,
   error: state.auth.error,
-  isAuth: state.auth.token !== null
+  isAuth: state.auth.token !== null,
+  authRedirectPath: state.auth.authRedirectPath,
+  building: state.burgerBuilder.building
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
+  onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
+  onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);
