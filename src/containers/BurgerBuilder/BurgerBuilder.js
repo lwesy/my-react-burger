@@ -74,7 +74,7 @@ class BurgerBuilder extends Component {
         purchaseContinued={this.purchaseContinueHandler}
         purchaseCanceled={this.purchaseCancelHandler}
         price={this.props.price}
-      />
+      />;
     }
 
     return (
