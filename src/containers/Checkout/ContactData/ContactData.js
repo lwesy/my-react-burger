@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import {checkValidity} from '../../../utils';
 import * as actions from '../../../store/actions/'
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -115,31 +116,13 @@ class ContactData extends Component {
     this.props.onOrderBurger(order, this.props.token);
   };
 
-  checkValidity(value, rules) {
-    let isValid = true;
-
-    if (rules.required) {
-      isValid = value.trim() !== '' && isValid;
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-
-    return isValid;
-  }
-
   inputChangedHandler = (event, id) => {
     const updatedForm = {
       ...this.state.orderForm,
       [id]: {
         ...this.state.orderForm[id],
         value: event.target.value,
-        valid: this.checkValidity(event.target.value, this.state.orderForm[id].validation),
+        valid: checkValidity(event.target.value, this.state.orderForm[id].validation),
         touched: true,
       }
     };
